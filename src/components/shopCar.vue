@@ -33,6 +33,7 @@
           </div>
           <!--名字加价格-->
           <div class="goods-info">
+            <p class="del_shop" @click="delShops(item.id)">删除</p>
             <p class="goods-title">{{ item.name }}</p>
             <div class="goods-price">
               <span>¥<b>{{ item.price }}</b></span>
@@ -136,6 +137,16 @@
         this.selectedNum=selectedNum;
         this.shopCount=shopCount
       },
+      //删除商品
+      delShops(id){
+        var index=this.cart.findIndex(item=>{
+          if(item.id==id){
+            return true
+          }
+        });
+        this.cart.splice(index,1)
+        this.__totalMoney();
+      }
     },
   }
 </script>
@@ -379,5 +390,16 @@
     font-size: 16px;
     padding:0 20px;
   }
+
+.del_shop {
+  float: right;
+  font-size: 12px;
+  display: inline-block;
+  background: red;
+  color: white ;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
 
 </style>
